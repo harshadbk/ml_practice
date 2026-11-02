@@ -7,7 +7,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import (accuracy_score,precision_score,f1_score,
-classification_report,confusion_matrix,recall_score)
+classification_report,confusion_matrix,recall_score,roc_curve,roc_auc_score)
+
 
 df = pd.read_csv("heart_disease_data.csv")
 
@@ -35,7 +36,16 @@ model.fit(x_train,y_train)
 
 prd = model.predict(x_test)
 
+prod = model.predict_proba(x_test)[:,1]
+
 print("Model Evaluation :")
+
+fpr, tpr, threshold = roc_curve(y_test, prod)
+
+auc = roc_auc_score(y_test, prod)
+
+plt.plot(fpr, tpr, label=f'AUC: {auc:.2f}')
+plt.show()
 
 print(accuracy_score(y_test,prd)," \n ")
 

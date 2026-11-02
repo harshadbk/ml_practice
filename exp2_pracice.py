@@ -9,6 +9,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error,mean_absolute_error,r2_score,mean_squared_error
 import math
 
+
 np.random.seed(42)
 
 n_students = 50
@@ -30,10 +31,10 @@ y = df["Marks"]
 
 x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.30,random_state=42)
 
-# sc = StandardScaler()
+sc = StandardScaler()
 
-# x_train = sc.fit_transform(x_train)
-# x_test = sc.transform(x_test)
+x_train = sc.fit_transform(x_train)
+x_test = sc.transform(x_test)
 
 print(x_train)
 print(x_test)
