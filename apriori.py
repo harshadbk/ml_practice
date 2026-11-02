@@ -33,6 +33,8 @@ min_support = 0.20
 
 frequent_itemset = apriori(df,min_support=min_support,use_colnames=True)
 
+print(frequent_itemset)
+
 frequent_itemset["itemsets_size"] = frequent_itemset["itemsets"].apply(len)
 
 print(frequent_itemset)
